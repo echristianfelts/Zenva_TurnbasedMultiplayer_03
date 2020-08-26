@@ -27,5 +27,35 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Server");
+        CreateOrJoinRoom();
+
+    }
+
+    public override void OnJoinedRoom()
+    {
+        Debug.Log("OnJoinedRoom");
+    }
+
+    // joins a random room or creates a new room
+    public void CreateOrJoinRoom()
+    {
+        // if there are available rooms, join a random one
+        if (PhotonNetwork.CountOfRooms > 0)
+            PhotonNetwork.JoinRandomRoom();
+
+        // otherwise, create a new room
+        else
+        {
+            RoomOptions options = new RoomOptions();
+            options.MaxPlayers = 2;
+            PhotonNetwork.CreateRoom(null, options);
+        }
+    }
+
+
+    // changes the scene using Photon's system
+    public void ChangeScene(string sceneName)
+    {
+        PhotonNetwork.LoadLevel(sceneName);
     }
 }
