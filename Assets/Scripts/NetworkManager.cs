@@ -8,11 +8,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
 
     //  instance
-    public static NetworkManager instace;
+    public static NetworkManager instance;
 
     private void Awake()
     {
-        instace = this;
+        instance = this;
         DontDestroyOnLoad(gameObject);
 
     }
@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnConnectedToMaster()
     {
         Debug.Log("Connected to Server");
-        CreateOrJoinRoom();
+        // CreateOrJoinRoom();
 
     }
 
@@ -54,6 +54,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
 
     // changes the scene using Photon's system
+    [PunRPC]
     public void ChangeScene(string sceneName)
     {
         PhotonNetwork.LoadLevel(sceneName);
