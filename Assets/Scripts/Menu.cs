@@ -112,10 +112,10 @@ public class Menu : MonoBehaviourPunCallbacks
     }
 
     public void OnLeaveButton ()
-{
-    PhotonNetwork.LeaveRoom();
-    SetScreen(mainScreen);
-}
+    {
+        PhotonNetwork.LeaveRoom();
+        SetScreen(mainScreen);
+    }
 
 
 }
